@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Note for You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Quicksand', sans-serif;
+      color: #2c2c2c;
+      text-align: center;
+      background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #fbc2eb, #ffdde1);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .emoji-btn {
+      font-size: 60px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .emoji-btn:active {
+      transform: scale(1.2);
+    }
+
+    .subtitle {
+      font-size: 22px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-style: italic;
+    }
+
+    .prompt {
+      font-size: 16px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .message-part {
+      font-size: 17px;
+      max-width: 600px;
+      margin: 12px 10px;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .message-part {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="subtitle">A Note for You</div>
+    <div id="emoji" class="emoji-btn">💌</div>
+    <div id="prompt" class="prompt">Tap to open</div>
+
+    <div id="part1" class="message-part">I chose to stay in touch after we broke up—not because I wanted to fix things, but because I genuinely appreciated the influence you had on me.</div>
+    <div id="part2" class="message-part">I enjoyed your company, I grew with you, and you helped me become a better version of myself. I wanted that presence in my life.</div>
+    <div id="part3" class="message-part">But with time, I realized that sometimes the kindest thing we can do is let go—fully. And I respect that we did.</div>
+    <div id="part4" class="message-part">Just know this: I’m truly grateful for everything we shared. Even if I got emotional, even if I stumbled while processing it all—I don’t regret trying.</div>
+    <div id="part5" class="message-part">A small part of me will always smile at the thought of even one more day with you.</div>
+    <div id="part6" class="message-part">But life has different plans for both of us now. Maybe one day, when we’ve figured our messy lives out, we can talk again—not as what we were, but as people who can share openly.</div>
+    <div id="part7" class="message-part">And if that never happens, I still hope you find someone you can trust, laugh with, and be your amazing self around.</div>
+    <div id="part8" class="message-part">Take care, Dumbo.<br><strong>— Tanny Boy</strong></div>
+  </div>
+
+  <script>
+    const parts = [
+      "part1", "part2", "part3", "part4",
+      "part5", "part6", "part7", "part8"
+    ];
+    let clickCount = 0;
+    const emoji = document.getElementById('emoji');
+    const prompt = document.getElementById('prompt');
+
+    const showNext = () => {
+      if (clickCount < parts.length) {
+        const part = document.getElementById(parts[clickCount]);
+        part.style.display = 'block';
+        part.style.animation = 'fadeIn 1s ease forwards';
+        clickCount++;
+        prompt.textContent = (clickCount === parts.length) ? '' : 'Tap again';
+      }
+    };
+
+    emoji.addEventListener('click', showNext);
+    emoji.addEventListener('touchstart', showNext); // For mobile tap
+  </script>
+
+</body>
+</html>
